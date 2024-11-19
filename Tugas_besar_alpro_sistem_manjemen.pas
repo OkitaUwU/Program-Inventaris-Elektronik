@@ -267,5 +267,3 @@ begin
     
     close(dataFile);
 end.
-
-begin 
