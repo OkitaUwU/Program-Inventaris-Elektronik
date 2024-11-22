@@ -267,4 +267,3 @@ begin
     
     close(dataFile);
 end.
-kontol
