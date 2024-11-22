@@ -9,11 +9,23 @@ type
         kondisi: string[20];
     end;
 
+// Definisi tipe data "Perangkat" menggunakan record yang terdiri dari:
+// - kode: Kode unik perangkat (maksimal 10 karakter)
+// - nama: Nama perangkat (maksimal 50 karakter)
+// - jumlah: Jumlah perangkat dalam inventaris
+// - kondisi: Kondisi perangkat (misalnya, "baik", "rusak")
+
 var
     dataFile: file of Perangkat;
     tmpPerangkat: Perangkat;
     pilihan: integer;
     fileName: string;
+
+// Variabel global yang digunakan:
+// - dataFile: File yang berisi data semua perangkat
+// - tmpPerangkat: Record sementara untuk menyimpan data perangkat yang sedang diolah
+// - pilihan: Pilihan menu dari pengguna
+// - fileName: Nama file yang menyimpan data perangkat
 
 procedure TampilkanMenu;
 begin
@@ -29,6 +41,9 @@ begin
     write('Pilih menu (0-5): ');
 end;
 
+// Prosedur TampilkanMenu menampilkan menu utama dengan pilihan untuk menambah, melihat, mencari, mengedit, atau menghapus perangkat.
+// Pengguna dapat memilih salah satu opsi dengan memasukkan angka dari 0 sampai 5.
+
 procedure TampilkanHeaderTabel;
 begin
     writeln('------------------------------------------------------------------');
@@ -36,10 +51,14 @@ begin
     writeln('------------------------------------------------------------------');
 end;
 
+// Prosedur TampilkanHeaderTabel menampilkan header tabel untuk data perangkat elektronik.
+
 procedure TampilkanBarisTabel(p: Perangkat);
 begin
     writeln('| ', p.kode:10, ' | ', p.nama:26, ' | ', p.jumlah:7, ' | ', p.kondisi:10, ' |');
 end;
+
+// Prosedur TampilkanBarisTabel menampilkan data satu perangkat dalam format tabel.
 
 procedure TambahPerangkat;
 var
@@ -78,6 +97,9 @@ begin
     readln;
 end;
 
+// Prosedur TambahPerangkat meminta pengguna memasukkan data perangkat baru,
+// kemudian menampilkan data tersebut untuk konfirmasi sebelum disimpan ke file.
+
 procedure TampilkanPerangkat;
 begin
     clrscr;
@@ -93,6 +115,8 @@ begin
     writeln('Klik Enter untuk kembali ke menu.');
     readln;
 end;
+
+// Prosedur TampilkanPerangkat menampilkan seluruh data perangkat yang ada di dalam file.
 
 function CariPerangkat(kode: string): integer;
 var
@@ -111,6 +135,9 @@ begin
     end;
     CariPerangkat := posisi;
 end;
+
+// Fungsi CariPerangkat mencari perangkat berdasarkan kode.
+// Jika ditemukan, fungsi mengembalikan posisi perangkat dalam file; jika tidak, mengembalikan -1.
 
 procedure CariDanTampilkanPerangkat;
 var
@@ -141,6 +168,9 @@ begin
     writeln('Klik Enter untuk kembali ke menu.');
     readln;
 end;
+
+// Prosedur CariDanTampilkanPerangkat memungkinkan pengguna mencari perangkat berdasarkan kode
+// dan menampilkan hasil pencarian. Jika perangkat tidak ditemukan, ditampilkan pesan error.
 
 procedure EditPerangkat;
 var
@@ -185,6 +215,9 @@ begin
     writeln('Klik Enter untuk kembali ke menu.');
     readln;
 end;
+
+// Prosedur EditPerangkat memungkinkan pengguna mengedit data perangkat berdasarkan kode yang dimasukkan.
+// Jika ditemukan, pengguna bisa mengubah nama, jumlah, atau kondisi perangkat.
 
 procedure HapusPerangkat;
 var
@@ -242,6 +275,9 @@ begin
     writeln('Klik Enter untuk kembali ke menu.');
     readln;
 end;
+
+// Prosedur HapusPerangkat memungkinkan pengguna menghapus data perangkat berdasarkan kode yang dimasukkan.
+// Jika ditemukan
 
 begin
     fileName := 'inventaris.dat';
