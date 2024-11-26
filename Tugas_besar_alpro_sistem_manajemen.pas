@@ -1,4 +1,4 @@
-program InventarisElektronik;
+program InventarisPerangkatElektronik;
 uses crt;
 
 type
